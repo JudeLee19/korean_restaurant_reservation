@@ -44,9 +44,24 @@ def get_utterances(dialogs=[]):
     dialogs = dialogs if len(dialogs) else read_dialogs()
     return [ row[0] for row in dialogs ]
 
+
 def get_responses(dialogs=[]):
     dialogs = dialogs if len(dialogs) else read_dialogs()
-    return [ row[1] for row in dialogs ] 
+    
+    # # find not having || error.
+    # for row in dialogs:
+    #     print(row)
+    #     print(row[0], row[1])
+    #     print('\n')
+    #
+    
+    # find not having suffix and add suffix
+    for row in dialogs:
+        if (('전화번호는' in row[1]) or ('주소는' in row[1])) and ('입니다' not in row[1]):
+            row[1] = row[1] + ' ' + '입니다'
+            
+    return [ row[1] for row in dialogs ]
+    
 
 
 def get_entities():

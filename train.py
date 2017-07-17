@@ -20,8 +20,8 @@ class Trainer():
         at = ActionTracker(et)
 
         self.dataset, dialog_indices = Data(et, at).trainset
-        self.dialog_indices_tr = dialog_indices[:40]
-        self.dialog_indices_dev = dialog_indices[40:48]
+        self.dialog_indices_tr = dialog_indices[:130]
+        self.dialog_indices_dev = dialog_indices[130:148]
 
         obs_size = self.emb.dim + self.bow_enc.vocab_size + et.num_features
         self.action_templates = at.get_action_templates()

@@ -76,13 +76,19 @@ class InteractiveSession():
                 # forward
                 prediction = self.net.forward(features, action_mask)
                 print('prediction : ', prediction)
-                
+                print(u_entities)
+                print('\n')
                 if self.post_process(prediction, u_ent_features):
                     print('>>', 'api_call ' + u_entities['<cuisine>'] + ' ' + u_entities['<location>']
                           + ' ' + u_entities['<party_size>'] + ' ' + u_entities['<rest_type>'])
+                
                 else:
                     prediction = self.action_post_process(prediction, u_entities)
                     print('>>', self.action_templates[prediction])
+                    
+                    # if all entities is satisfied and the user agree to make a reservation.
+                    if all(u_ent_featur == 1 for u_ent_featur in u_ent_features) and (prediction == 10):
+                        break
     
     def post_process(self, prediction, u_ent_features):
         if prediction == 0:
@@ -104,6 +110,9 @@ class InteractiveSession():
         # find exist and non-exist entity
         exist_ent_index = [key for key, value in u_entities.items() if value != None]
         non_exist_ent_index = [key for key, value in u_entities.items() if value == None]
+        
+        # if predicted key is already in exist entity index then find non exist entity index
+        # and leads the user to input non exist entity.
         
         if prediction in attr_mapping_dict:
             pred_key = attr_mapping_dict[prediction]
