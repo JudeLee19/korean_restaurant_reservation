@@ -21,10 +21,9 @@ class EntityTracker():
         
         self.cuisines = ['영국','중국','프랑스', '이탈리아', '인도', '일식', '일본', '한식', '한국', '스페인', '타이', '베트남']
         
-        self.rest_types = ['저렴', '비싼', '적당']
+        self.rest_types = ['저렴', '싼','비싼', '적당']
 
         self.EntType = Enum('Entity Type', '<party_size> <location> <cuisine> <rest_type> <non_ent>')
-
 
     def ent_type(self, ent):
         if ent.startswith(tuple(self.party_sizes)):
@@ -45,7 +44,6 @@ class EntityTracker():
             if word != entity and update:
                 self.entities[entity] = word
             tokenized.append(entity)
-
         tokenized_str = ' '.join(tokenized)
         
         if is_test is True:

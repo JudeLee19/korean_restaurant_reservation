@@ -10,6 +10,7 @@ import modules.util as util
     3. Organize trainset as list of dialogues
 '''
 
+
 class Data():
 
     def __init__(self, entity_tracker, action_tracker):

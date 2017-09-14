@@ -19,4 +19,4 @@ class UtteranceEmbed():
         if len(embs):
             return np.mean(embs, axis=0)
         else:
-            return np.zeros([self.dim],np.float32)
+            return np.zeros([self.dim], np.float32)

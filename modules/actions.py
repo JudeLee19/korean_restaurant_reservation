@@ -68,8 +68,8 @@ class ActionTracker():
 
     def get_action_templates(self):
         responses = list(set([ self.et.extract_entities(response, update=False) 
-            for response in util.get_responses() ]))
-
+            for response in util.get_responses()]))
+        
         def extract_(response):
             template = []
             for word in response.split(' '):
@@ -83,6 +83,10 @@ class ActionTracker():
                 else:
                     template.append(word)
             return ' '.join(template)
-
+        
+        for each in responses:
+            each_response = extract_(each)
+            if each_response == '<info_phone> 입니다':
+                print(each)
         # extract restaurant entities
         return sorted(set([ extract_(response) for response in responses ]))

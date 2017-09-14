@@ -3,6 +3,7 @@ from tensorflow.contrib.layers import xavier_initializer as xav
 
 import numpy as np
 
+
 class LSTM_net():
 
     def __init__(self, obs_size, nb_hidden=128, action_size=16):
@@ -128,7 +129,7 @@ class LSTM_net():
     # restore session from checkpoint
     def restore(self):
         saver = tf.train.Saver()
-        ckpt = tf.train.get_checkpoint_state('ckpt/')
+        ckpt = tf.train.get_checkpoint_state('ckpt_1000/')
         if ckpt and ckpt.model_checkpoint_path:
             print('\n:: restoring checkpoint from', ckpt.model_checkpoint_path, '\n')
             saver.restore(self.sess, ckpt.model_checkpoint_path)
