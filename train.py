@@ -4,8 +4,7 @@ from  modules.lstm_net import LSTM_net
 from modules.embed import UtteranceEmbed
 from modules.actions import ActionTracker
 from modules.data_utils import Data
-import modules.util as util
-
+import joblib
 import numpy as np
 import sys
 
@@ -20,8 +19,12 @@ class Trainer():
         at = ActionTracker(et)
 
         self.dataset, dialog_indices = Data(et, at).trainset
-        self.dialog_indices_tr = dialog_indices[:760]
-        self.dialog_indices_dev = dialog_indices[760:]
+        
+        train_indices = joblib.load('data/train_test_list/train_indices_759')
+        test_indices = joblib.load('data/train_test_list/test_indices_759_949')
+        
+        self.dialog_indices_tr = train_indices
+        self.dialog_indices_dev = test_indices
 
         obs_size = self.emb.dim + self.bow_enc.vocab_size + et.num_features
         self.action_templates = at.get_action_templates()
@@ -52,9 +55,6 @@ class Trainer():
             accuracy = self.evaluate()
             print(':: {}.dev accuracy {}\n'.format(j+1, accuracy))
         self.net.save()
-            # if accuracy > 0.9:
-            #     self.net.save()
-            #     break
 
     def dialog_train(self, dialog):
         # create entity tracker

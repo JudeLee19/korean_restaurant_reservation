@@ -123,13 +123,13 @@ class LSTM_net():
     # save session to checkpoint
     def save(self):
         saver = tf.train.Saver()
-        saver.save(self.sess, 'ckpt/hcn.ckpt', global_step=0)
+        saver.save(self.sess, 'ckpt_759/hcn.ckpt', global_step=0)
         print('\n:: saved to ckpt/hcn.ckpt \n')
 
     # restore session from checkpoint
     def restore(self):
         saver = tf.train.Saver()
-        ckpt = tf.train.get_checkpoint_state('ckpt_1000/')
+        ckpt = tf.train.get_checkpoint_state('ckpt_759/')
         if ckpt and ckpt.model_checkpoint_path:
             print('\n:: restoring checkpoint from', ckpt.model_checkpoint_path, '\n')
             saver.restore(self.sess, ckpt.model_checkpoint_path)

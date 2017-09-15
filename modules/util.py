@@ -14,7 +14,7 @@ def read_dialogs(with_indices=False):
                 filtered_.append(row)
         return filtered_
     
-    with open('/root/jude/project/korean_restaurant/src/hcn/data/korean_train/Dataset_1-1000_before_pre_v2', encoding='utf-8') as f:
+    with open('/root/jude/project/korean_restaurant/src/hcn/data/korean_train/train_1000_v1', encoding='utf-8') as f:
         dialogs = filter_([rm_index(row.strip().split('||')) for row in f.read().split('\n')])
         # organize dialogs -> dialog_indices
         prev_idx = -1
