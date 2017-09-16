@@ -17,7 +17,7 @@ class EntityTracker():
         # constants
         self.party_sizes = ['한명', '두명', '세명', '셋', '네명', '넷', '다섯', '다섯명', '여섯', '여섯명', '일곱', '여덟']
         
-        self.locations = ['방콕', '베이징', '붐베이', '하노이', '파리', '로마', '런던', '마드리드', '서울', '도쿄']
+        self.locations = ['방콕', '베이징', '붐베이', '하노이', '파리', '로마', '런던', '마드리드', '서울', '도쿄', 'LA']
         
         self.cuisines = ['영국','중국','프랑스', '이탈리아', '인도', '일식', '일본', '한식', '한국', '스페인', '타이', '베트남']
         
@@ -26,23 +26,28 @@ class EntityTracker():
         self.EntType = Enum('Entity Type', '<party_size> <location> <cuisine> <rest_type> <non_ent>')
 
     def ent_type(self, ent):
+        # entity = [word for word in locations if word in input_str]
         if ent.startswith(tuple(self.party_sizes)):
-            return self.EntType['<party_size>'].name
+            entity_word = [word for word in self.party_sizes if word in ent][0]
+            return self.EntType['<party_size>'].name, entity_word
         elif ent.startswith(tuple(self.locations)):
-            return self.EntType['<location>'].name
+            entity_word = [word for word in self.locations if word in ent][0]
+            return self.EntType['<location>'].name, entity_word
         elif ent.startswith(tuple(self.cuisines)):
-            return self.EntType['<cuisine>'].name
+            entity_word = [word for word in self.cuisines if word in ent][0]
+            return self.EntType['<cuisine>'].name, entity_word
         elif ent.startswith(tuple(self.rest_types)):
-            return self.EntType['<rest_type>'].name
+            entity_word = [word for word in self.rest_types if word in ent][0]
+            return self.EntType['<rest_type>'].name, entity_word
         else:
-            return ent
+            return ent, None
 
     def extract_entities(self, utterance, update=True, is_test=False):
         tokenized = []
         for word in utterance.split(' '):
-            entity = self.ent_type(word)
+            entity, entity_word = self.ent_type(word)
             if word != entity and update:
-                self.entities[entity] = word
+                self.entities[entity] = entity_word
             tokenized.append(entity)
         tokenized_str = ' '.join(tokenized)
         

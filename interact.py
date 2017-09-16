@@ -93,7 +93,7 @@ class InteractiveSession():
     def post_process(self, prediction, u_ent_features):
         if prediction == 0:
             return True
-        attr_list = [9, 11, 6, 1]
+        attr_list = [9, 12, 6, 1]
         if all(u_ent_featur == 1 for u_ent_featur in u_ent_features) and prediction in attr_list:
             return True
         else:
@@ -102,7 +102,7 @@ class InteractiveSession():
     def action_post_process(self, prediction, u_entities):
         attr_mapping_dict = {
             9: '<cuisine>',
-            11: '<location>',
+            12: '<location>',
             6: '<party_size>',
             1: '<rest_type>'
         }
