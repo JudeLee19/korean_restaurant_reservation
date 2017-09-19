@@ -4,20 +4,20 @@ Implement korean restaurant reservation system based on hybrid code network(http
 <br><br>
 ## Building Dialogue Data Set
 ### Restaurant Reservation System Data Translation
-![](./img/data_table_1.png)
+![250](./img/data_table_1.png)
 ### Variation of various speech patterns according to purpose of utterance in Korean
 ![](./img/data_table_2.png)
 
 ## Proposed Methods
-![](./img/proposed_methods.png)
+![250](./img/proposed_methods.png)
 
 ## Interaction
-![](./img/example.png)
+![250](./img/example.png)
 ![](./img/interact_2.png)
 
 ## Result
 ### Hyper-parameter
-![](./img/hyper.png)
+![50](./img/hyper.png)
 
 ### Evaluation
-![](./img/eval.png)
+![250](./img/eval.png)
