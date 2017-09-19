@@ -21,4 +21,4 @@ Implement korean restaurant reservation system based on hybrid code network(http
 ![50](./img/hyper.png)
 
 ### Evaluation
-![250](./img/eval.png)
+![50](./img/eval.png)
