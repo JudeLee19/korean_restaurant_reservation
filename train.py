@@ -52,8 +52,9 @@ class Trainer():
 
             print('\n\n:: {}.tr loss {}'.format(j+1, loss/num_tr_examples))
             # evaluate every epoch
-            accuracy = self.evaluate()
-            print(':: {}.dev accuracy {}\n'.format(j+1, accuracy))
+            per_response_accuracy,  per_dialogue_accuracy= self.evaluate()
+            print(':: {}.dev per_response_accuracy {}\n'.format(j+1, per_response_accuracy))
+            print(':: {}.dev per_dialogue_accuracy {}\n'.format(j + 1, per_dialogue_accuracy))
         self.net.save()
 
     def dialog_train(self, dialog):
@@ -89,7 +90,7 @@ class Trainer():
         self.net.reset_state()
 
         dialog_accuracy = 0.
-        
+        correct_dialogue_count = 0
         for dialog_idx in self.dialog_indices_dev:
             
             start, end = dialog_idx['start'], dialog_idx['end']
@@ -119,10 +120,14 @@ class Trainer():
                 #  train step
                 prediction = self.net.forward(features, action_mask)
                 correct_examples += int(prediction == r)
+                
+            if correct_examples == len(dialog):
+                correct_dialogue_count += 1
             # get dialog accuracy
-            dialog_accuracy += correct_examples/len(dialog)
-
-        return dialog_accuracy / num_dev_examples
+            dialog_accuracy += correct_examples/ len(dialog)
+        per_response_accuracy = dialog_accuracy / num_dev_examples
+        per_dialogue_accuracy = correct_dialogue_count / num_dev_examples
+        return per_response_accuracy, per_dialogue_accuracy
 
 
 
