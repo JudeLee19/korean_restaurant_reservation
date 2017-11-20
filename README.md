@@ -33,4 +33,4 @@ The Korean dataset is consist of 1000 dialogues.(data/korean_train)
 
 ### Evaluation
 - Per-response Accuracy : 95%<br>
-- Per-dialogue Accuracy : 63%
+- Per-dialogue Accuracy : 71%
