@@ -4,7 +4,7 @@ Implement korean restaurant reservation dialogue system based on hybrid code net
 <br><br>
 ## Download Word2vec Trained with Korean Data 
 1. ```cd data/ ```
-2. [Downalod word2vec](https://koreaoffice-my.sharepoint.com/personal/judelee93_office365_korea_ac_kr/_layouts/15/guestaccess.aspx?docid=0bb7c7215512c45dda72a0ac5a01c4175&authkey=Aa9oWjzy0H6efrc04edY8rY)
+2. [Downalod word2vec](http://bitly.kr/h8Np)
 3. ```tar -xvf korean_word2vec.tar.gz```
 
 ## Train
